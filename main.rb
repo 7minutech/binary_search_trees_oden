@@ -1,4 +1,6 @@
-arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+require_relative "lib/node"
+require_relative "lib/tree"
+arr = [1, 2, 3, 4, 5, 6, 7]
 my_tree = Tree.new(arr)
 my_tree.build_tree
 puts my_tree.tree_arr
