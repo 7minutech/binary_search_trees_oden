@@ -28,12 +28,12 @@ class Tree
     current_node = @root
     while current_node
       prev_node = current_node
-      if value == current_node.value
-        return nil
-      elsif value < current_node.value
+      if value < current_node.value
         current_node = current_node.left_node
-      else
+      elsif value > current_node.value
         current_node = current_node.right_node
+      else
+        return nil
       end
     end
     if value < prev_node.value
