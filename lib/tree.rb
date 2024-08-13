@@ -4,7 +4,7 @@ class Tree
   attr_accessor :arr, :root
 
   def initialize(arr)
-    @arr = arr.sort
+    @arr = arr.sort.uniq
     @root = build_tree
   end
 
