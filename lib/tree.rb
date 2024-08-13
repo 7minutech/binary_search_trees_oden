@@ -112,4 +112,6 @@ class Tree
     end
     find_candidate_node(root.left_node)
   end
+
+  def find(value)
 end
