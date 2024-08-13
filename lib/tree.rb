@@ -17,4 +17,10 @@ class Tree
     root.right_node = (build_tree(array, mid + 1, last))
     root
   end
+
+  def pretty_print(node = @root, prefix = "", is_left = true)
+    pretty_print(node.right_node, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_node
+    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
+    pretty_print(node.left_node, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left_node
+  end
 end
