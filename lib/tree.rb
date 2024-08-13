@@ -42,4 +42,20 @@ class Tree
       prev_node.right_node = Node.new(value)
     end
   end
+
+  def insert_recursion(value, root = @root)
+    if value < root.value
+      if root.left_node.nil?
+        root.left_node = Node.new(value)
+        return
+      end
+      insert_recursion(value, root.left_node)
+    elsif value > root.value
+      if root.right_node.nil?
+        root.right_node = Node.new(value)
+        return
+      end
+      insert_recursion(value, root.right_node)
+    end
+  end
 end
