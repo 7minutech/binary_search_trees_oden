@@ -113,5 +113,16 @@ class Tree
     find_candidate_node(root.left_node)
   end
 
-  def find(value)
+  def find(value, root = @root)
+    if value < root.value
+      return root.left_node if value == root.left_node.value
+
+      find(value, root.left_node)
+    elsif value > root.value
+      return root.right_node if value == root.right_node.value
+
+      puts "s"
+      find(value, root.right_node)
+    end
+  end
 end
