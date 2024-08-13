@@ -5,7 +5,7 @@ class Tree
   def initialize(arr)
     @arr = arr
     @tree_arr = nil
-    @root = nil
+    @root = node.new(arr[arr.length / 2])
   end
 
   def build_tree
