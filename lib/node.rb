@@ -18,6 +18,9 @@ class Node
   end
 
   def to_s
-    "value: #{@value}, left node: #{@left_node.value}, right node: #{@right_node.value}"
+    str = "value: #{@value} "
+    str += @left_node.nil? ? "left node: nil " : "left node: #{left_node.value} "
+    str += @left_node.nil? ? "right node: nil" : "right node: #{right_node.value}"
+    str
   end
 end
