@@ -8,11 +8,12 @@ class Node
   end
 
   def number_of_children
-    if @left_node && @right_node != nil
+    if @left_node && !@right_node.nil?
       2
-    elsif @left_node != nil || @right_node != nil
+    elsif !@left_node.nil? || !@right_node.nil?
       1
     else
       0
+    end
   end
 end
