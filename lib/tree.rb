@@ -98,8 +98,10 @@ class Tree
   end
 
   def find_candidate_node(root)
-    return root if root.left_node.nil?
-
+    if root.left_node.nil?
+      delete(root)
+      root
+    end
     find_candidate_node(root.left_node)
   end
 end
