@@ -1,4 +1,5 @@
 require_relative "node"
+# defines a balanced binary tree class
 class Tree
   attr_accessor :arr, :root
 
