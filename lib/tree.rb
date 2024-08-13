@@ -96,4 +96,10 @@ class Tree
       delete(value, root.right_node)
     end
   end
+
+  def find_candidate_node(root)
+    return root if root.left_node.nil?
+
+    find_candidate_node(root.left_node)
+  end
 end
