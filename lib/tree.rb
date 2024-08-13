@@ -1,13 +1,13 @@
+require_relative "node"
 class Tree
-  attr_accessor :arr, :root
+  attr_accessor :arr
 
   def initialize(arr)
     @arr = arr
     @tree_arr = nil
-    @root = arr[arr.length / 2]
+    @root = nil
   end
 
   def build_tree
-    @root
   end
 end
