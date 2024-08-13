@@ -64,7 +64,11 @@ class Tree
       if value == root.left_node.value
         case root.left_node.number_of_children
         when 2
-          nil
+          garbage_node = root.left_node
+          candidate = find_candidate_node(garbage_node.right_node)
+          candidate.right_node = garbage_node.right_node
+          candidate.left_node = garbage_node.left_node
+          root.left_node = candidate
         when 1
           root.left_node = if root.left_node.right_node.nil?
                              root.left_node.left_node
@@ -81,7 +85,11 @@ class Tree
       if value == root.right_node.value
         case root.right_node.number_of_children
         when 2
-          nil
+          garbage_node = root.right_node
+          candidate = find_candidate_node(garbage_node.right_node)
+          candidate.right_node = garbage_node.right_node
+          candidate.left_node = garbage_node.left_node
+          root.right_node = candidate
         when 1
           root.right_node = if root.right_node.right_node.nil?
                               root.right_node.left_node
@@ -99,8 +107,8 @@ class Tree
 
   def find_candidate_node(root)
     if root.left_node.nil?
-      delete(root)
-      root
+      delete(root.value)
+      return root
     end
     find_candidate_node(root.left_node)
   end
