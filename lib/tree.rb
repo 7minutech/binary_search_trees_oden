@@ -58,4 +58,42 @@ class Tree
       insert_recursion(value, root.right_node)
     end
   end
+
+  def delete(value, root = @root)
+    if value < root.value
+      if value == root.left_node.value
+        case root.left_node.number_of_children
+        when 2
+          nil
+        when 1
+          root.left_node = if root.left_node.right_node.nil?
+                             root.left_node.left_node
+                           else
+                             root.left_node.right_node
+                           end
+        when 0
+          root.left_node = nil
+        end
+        return
+      end
+      delete(value, root.left_node)
+    elsif value > root.value
+      if value == root.right_node.value
+        case root.right_node.number_of_children
+        when 2
+          nil
+        when 1
+          root.right_node = if root.right_node.right_node.nil?
+                              root.right_node.left_node
+                            else
+                              root.right_node.right_node
+                            end
+        when 0
+          root.right_node = nil
+        end
+        return
+      end
+      delete(value, root.right_node)
+    end
+  end
 end
