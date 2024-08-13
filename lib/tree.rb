@@ -4,7 +4,7 @@ class Tree
   attr_accessor :arr, :root
 
   def initialize(arr)
-    @arr = arr
+    @arr = sort_arr(arr)
     @root = build_tree
   end
 
@@ -16,5 +16,9 @@ class Tree
     root.left_node = (build_tree(array, start, mid - 1))
     root.right_node = (build_tree(array, mid + 1, last))
     root
+  end
+
+  def sort_arr(arr)
+    arr.sort
   end
 end
