@@ -212,6 +212,17 @@ class Tree
   end
 
   def balanced?
-    (height(@root.left_node.value) - height(@root.right_node.value)) < 2
+    height_left_subtree = height(@root.left_node.value)
+    height_right_subtree = height(@root.right_node.value)
+    (height_left_subtree - height_right_subtree).abs < 2
+  end
+
+  def rebalance
+    if balanced?
+      puts "Tree is already balanced"
+    else
+      @arr = in_order.map(&:value)
+      @root = build_tree(@arr.sort.uniq)
+    end
   end
 end
