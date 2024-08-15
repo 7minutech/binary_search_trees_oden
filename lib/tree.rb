@@ -115,10 +115,10 @@ class Tree
   end
 
   def find(value, root = @root)
-    return nil if root.left_node.nil?
     return root if value == @root.value
 
     if value < root.value
+      return nil if root.left_node.nil?
       return root.left_node if value == root.left_node.value
 
       find(value, root.left_node)
@@ -198,5 +198,16 @@ class Tree
     right_height = height(nil, root.right_node, edge + 1) unless root.right_node.nil?
 
     [left_height, right_height].compact.max
+  end
+
+  def depth(value, root = @root, depth = 0)
+    return nil if find(value).nil?
+    return depth if value == root.value
+
+    if value < root.value
+      depth(value, root.left_node, depth + 1)
+    elsif value > root.value
+      depth(value, root.right_node, depth + 1)
+    end
   end
 end
