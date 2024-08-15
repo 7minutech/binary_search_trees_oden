@@ -128,16 +128,22 @@ class Tree
   end
 
   def level_order(root = @root)
-    nill if root.nil?
+    return nil if root.nil?
+
     queue = []
+    order_arr = []
     queue.push(root)
     until queue.empty?
       current = queue[0]
-      yield(current)
+      yield(current) if block_given?
       queue.push(current.left_node) unless current.left_node.nil?
       queue.push(current.right_node) unless current.right_node.nil?
+      order_arr.push(queue.first)
       queue.shift
     end
+    return if block_given?
+
+    order_arr
   end
 
   def level_order_re(root = @root, queue = [@root], &block)
