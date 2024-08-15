@@ -1,3 +1,4 @@
+require "pry-byebug"
 require_relative "node"
 # defines a balanced binary tree class
 class Tree
@@ -137,5 +138,15 @@ class Tree
       queue.push(current.right_node) unless current.right_node.nil?
       queue.shift
     end
+  end
+
+  def level_order_re(root = @root, queue = [@root])
+    return if queue.empty?
+
+    yield(root)
+    queue.push(root.left_node) unless root.left_node.nil?
+    queue.push(root.right_node) unless root.right_node.nil?
+    queue.shift
+    level_order_re(queue.first, queue) { |node| puts node }
   end
 end
