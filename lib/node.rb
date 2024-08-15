@@ -20,7 +20,7 @@ class Node
   def to_s
     str = "value: #{@value} "
     str += @left_node.nil? ? "left node: nil " : "left node: #{left_node.value} "
-    str += @left_node.nil? ? "right node: nil" : "right node: #{right_node.value}"
+    str += @right_node.nil? ? "right node: nil" : "right node: #{right_node.value}"
     str
   end
 end

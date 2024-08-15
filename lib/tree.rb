@@ -154,4 +154,12 @@ class Tree
     queue.push(root.right_node) unless root.right_node.nil?
     level_order_re(queue.first, queue, ordered_arr, &block)
   end
+
+  def in_order(root = @root, stack = [@root], &block)
+    return nil if stack.empty?
+
+    in_order(root.left_node, stack.push(root.left_node), &block) unless root.left_node.nil?
+    yield(stack.pop)
+    in_order(root.right_node, stack.push(root.right_node), &block) unless root.right_node.nil?
+  end
 end
