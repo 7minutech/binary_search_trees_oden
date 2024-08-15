@@ -210,4 +210,8 @@ class Tree
       depth(value, root.right_node, depth + 1)
     end
   end
+
+  def balanced?
+    (height(@root.left_node.value) - height(@root.right_node.value)) < 2
+  end
 end
