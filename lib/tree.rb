@@ -138,7 +138,7 @@ class Tree
       yield(current) if block_given?
       queue.push(current.left_node) unless current.left_node.nil?
       queue.push(current.right_node) unless current.right_node.nil?
-      order_arr.push(queue.first)
+      order_arr.push(current)
       queue.shift
     end
     return if block_given?
