@@ -143,13 +143,21 @@ class Tree
     order_arr unless block_given?
   end
 
-  def level_order_re(root = @root, queue = [@root], &block)
-    return if queue.empty?
+  def level_order_re(root = @root, queue = [@root], ordered_arr = [], &block)
+    if queue.empty? && block_given?
+      return
+    elsif queue.empty? && !block_given?
+      return ordered_arr
+    end
 
-    yield(root)
+    yield(root) if block_given?
     queue.push(root.left_node) unless root.left_node.nil?
     queue.push(root.right_node) unless root.right_node.nil?
     queue.shift
-    level_order_re(queue.first, queue, &block)
+    if block_given?
+      level_order_re(queue.first, queue, &block)
+    else
+      level_order_re(queue.first, queue, ordered_arr.push(queue.first), &block)
+    end
   end
 end
