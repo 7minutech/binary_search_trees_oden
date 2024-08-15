@@ -134,16 +134,13 @@ class Tree
     order_arr = []
     queue.push(root)
     until queue.empty?
-      current = queue[0]
+      current = queue.shift
       yield(current) if block_given?
+      order_arr.push(current) unless block_given?
       queue.push(current.left_node) unless current.left_node.nil?
       queue.push(current.right_node) unless current.right_node.nil?
-      order_arr.push(current)
-      queue.shift
     end
-    return if block_given?
-
-    order_arr
+    order_arr unless block_given?
   end
 
   def level_order_re(root = @root, queue = [@root], &block)
