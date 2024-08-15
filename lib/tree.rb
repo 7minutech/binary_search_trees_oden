@@ -165,4 +165,15 @@ class Tree
 
     ordered_arr unless block_given?
   end
+
+  def pre_order(root = @root, ordered_arr = [], &block)
+    return ordered_arr if root.nil? && !block_given?
+
+    yield(root) if block_given?
+    ordered_arr.push(root) unless block_given?
+    pre_order(root.left_node, ordered_arr, &block) unless root.left_node.nil?
+    pre_order(root.right_node, ordered_arr, &block) unless root.right_node.nil?
+
+    ordered_arr unless block_given?
+  end
 end
