@@ -140,13 +140,13 @@ class Tree
     end
   end
 
-  def level_order_re(root = @root, queue = [@root])
+  def level_order_re(root = @root, queue = [@root], &block)
     return if queue.empty?
 
     yield(root)
     queue.push(root.left_node) unless root.left_node.nil?
     queue.push(root.right_node) unless root.right_node.nil?
     queue.shift
-    level_order_re(queue.first, queue) { |node| puts node }
+    level_order_re(queue.first, queue, &block)
   end
 end
