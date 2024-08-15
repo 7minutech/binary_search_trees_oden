@@ -115,6 +115,8 @@ class Tree
   end
 
   def find(value, root = @root)
+    return root if value == @root.value
+
     if value < root.value
       return root.left_node if value == root.left_node.value
 
@@ -122,7 +124,6 @@ class Tree
     elsif value > root.value
       return root.right_node if value == root.right_node.value
 
-      puts "s"
       find(value, root.right_node)
     end
   end
@@ -186,5 +187,17 @@ class Tree
     ordered_arr.push(root) unless block_given?
 
     ordered_arr unless block_given?
+  end
+
+  def height(value, root = find(value), edge = 0)
+    return edge if root.number_of_children.zero?
+
+    left_height = 0
+    right_height = 0
+    left_height = height(value, root.left_node, edge + 1) unless root.left_node.nil?
+    right_height = height(value, root.right_node, edge + 1) unless root.right_node.nil?
+    return left_height if left_height >= right_height
+
+    right_height
   end
 end
